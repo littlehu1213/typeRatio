@@ -11,7 +11,8 @@
 <body>
 
 <?php
-include '../config.php';
+//include '../config.php';
+include 'config.php';
 $Y=date('Y');
 $mm=date('m');
 

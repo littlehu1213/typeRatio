@@ -12,8 +12,9 @@
 <script>
 
 window.onload=function(){
-	var today=new Date();
-	var mm=today.getMonth();
+	// var today=new Date();
+	// var mm=today.getMonth();
+	var mm=11;
 	var m1="";var m2="";
 	var starM=document.getElementById('starM').value;
 	var endM=document.getElementById('endM').value;
@@ -74,10 +75,13 @@ $(document).ready( function() {
 </head>
 <body>
 	<!--<form action="index5.php" method="post" onsubmit="return check();">-->
+	
 	<div class="container">
+
 		<div class="row">
-			<div class="col col-lg-3 col-xs-6" id="change">
-				
+
+			<div class="col col-lg-3 col-sm-12" id="change">
+					<br>
 					<h3>月份</h3>
 				<p>
 					<select name="starM" id="starM">
@@ -94,14 +98,11 @@ $(document).ready( function() {
 
 			</div>
 
-			<div id="show" class="col col-lg-9 col-xs-6" >
+			<div id="show" class="col col-lg-9 col-sm-12" >
 
 				
 			</div>
-			<div id="show2" class="col col-lg-9 col-xs-6" >
-
-				
-			</div>
+			
 			
 			
 		</div>
