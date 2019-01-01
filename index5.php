@@ -53,10 +53,10 @@ $link = db_open();
 $sqlstr="
 
 SELECT month, type5 AS type,
-sum(p) AS p,sum(p)/(SELECT sum(p) FROM market where year2='初年度' AND type5 !='勞退年金' AND month BETWEEN $staM and $endM) AS ratio
-FROM market
+sum(p) AS p,sum(p)/(SELECT sum(p) FROM market where year2='初年度' AND type5 !='勞退年金' AND month BETWEEN $staM and $endM AND year='2018') AS ratio
+ FROM market
 where year2='初年度' AND type5 !='勞退年金' 
-AND month BETWEEN $staM and $endM GROUP BY type5 ORDER BY ratio DESC";
+AND month BETWEEN $staM and $endM AND year='2018' GROUP BY type5 ORDER BY ratio DESC";
 //echo $sqlstr;
 
 $result = mysqli_query($link, $sqlstr) or die(ERROR_QUERY);
