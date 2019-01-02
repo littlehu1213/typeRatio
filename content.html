@@ -40,33 +40,62 @@ window.onload=function(){
 
 
 	document.getElementById('endM').innerHTML=m2;
-	$(document).ready( function() {
+	// $(document).ready( function() {
    
-      var prog = 'index5.php?starM=1&endM=1';
-      $('#show').load( prog );
-      //$('#show2').load( prog );
-  
-} );
+ //      var prog = 'index5.php?starM=1&endM=1';
+ //      $('#show').load( prog );
+ //      //$('#show2').load( prog );
+
+//} 
+
+	$(document).ready(function(){
+		
+			$.ajax({
+				url:"index5.php",
+				dataType:"html",
+				data:
+				{
+					starM:1,
+					endM:1
+				},
+				success:function(data){
+					//alert(data);
+					$("#show").html(data);
+				},
+				error:function(){
+					alert("error");
+				}
+
+			});
+		
+	});
+
 }
 
 
 
 
 
-$(document).ready( function() {
-   $("#change").change(function() {
-      var prog = 'index5.php?starM=' + $('#starM').val()+'&endM='+ $('#endM').val();
-      $('#show').load( prog );
-      //$('#show2').load( prog );
-   });
-} );
+$(document).ready(function(){
+	$("#change").change(function() {
+		$.ajax({
+			url:"index5.php",
+			dataType:"html",
+			data:
+			{
+				starM:$('#starM').val(),
+				endM:$('#endM').val()
+			},
+			success:function(data){
+				$("#show").html(data);
+			},
+			error:function(){
+				alert("error");
+			}
 
-
-
-
-	
-
-
+		});
+	});
+});
 
 
 

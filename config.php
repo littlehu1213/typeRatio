@@ -1,12 +1,10 @@
 <?php
 
 define('DB_SERVERIP', 'localhost');
-//define('DB_USERNAME', 'root');
-define('DB_USERNAME', 'id1828577_littlehu1213');
-//define('DB_PASSWORD', '');
-define('DB_PASSWORD', '82613427');
-// define('DB_DATABASE', 'ins_data');
-define('DB_DATABASE', 'id1828577_ins_data');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');
+define('DB_DATABASE', 'ins_data');
+
 define('SET_CHARACTER', 'set character set utf8mb4');   // utf8或big5或此列加註移除
 
 define('ERROR_CONNECT',   'Cannot connect server');  // 無法連接伺服器

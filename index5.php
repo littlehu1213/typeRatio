@@ -16,11 +16,13 @@ include 'config.php';
 $Y=date('Y');
 $mm=date('m');
 
-//$staM=isset($_POST['starM']) ? $_POST['starM'] : 1;
-//$endM=isset($_POST['endM'])  ? $_POST['endM']  : $mm-1;
-$staM=isset($_GET['starM'])  ? $_GET['starM'] : $mm-1;
-$endM=isset($_GET['endM'])    ? $_GET['endM']   : $mm-1;
 
+$endM=isset($_GET['endM'])  ? $_GET['endM']  : $mm-1;
+$staM=isset($_GET['starM'])  ? $_GET['starM']  : $mm-1;
+
+
+// echo $staM;
+// echo $endM;
 
 $m1="";$m2="";
 	

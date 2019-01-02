@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	label {font-size: 140%;text-align-last: justify;}
+	.label2{font-size:200%; width:100%; text-align:center;font-weight: bold;color: #4682B4;;border-radius: 10pt; }
+
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+	<title>IRR</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+	<div id="change" onchange="calculate()" class="container">
+	<h2></h2>
+
+
+		<form class="form-horizontal">
+		    <div class="form-group form-group-lg">
+		      <label class="col-sm-3 control-label" for="lg">總共繳費年期:</label>
+		      <div class="col-sm-9">
+		        <input type="number" name="arr" value="1" class="form-control" id="lg">
+		      </div>
+		    </div>
+		    <div class="form-group form-group-lg">
+		      <label class="col-sm-3 control-label" for="lg2">每期繳費金額:</label>
+		      <div class="col-sm-9">
+		        <input type="number" name="arr" value="10000" class="form-control" id="lg2">
+		      </div>
+		    </div>
+		    <div class="form-group form-group-lg">
+		      <label class="col-sm-3 control-label" for="lg3">繳幾年後領回:</label>
+		      <div class="col-sm-9">
+		        <input type="number" name="arr" value="5" class="form-control" id="lg3">
+		      </div>
+		    </div>
+		    <div class="form-group form-group-lg">
+		      <label class="col-sm-3 control-label" for="lg4">總共領回金額:</label>
+		      <div class="col-sm-9">
+		        <input type="number" name="arr" value="50000" class="form-control" id="lg4">        
+		      </div>
+		    </div>
+	      	<div class="form-group form-group-lg">	      		      	     
+	    	</div>
+	    	
+		
+	  </form>
+	  <div class="label2" id="show" >XXX</div>
+
+	</div>
+	
+
+</body>
+
+<script>
+calculate();
+	
+	
+	//document.getElementById("change").addEventListener("onchange",calculate());
+	function calculate(){
+	
+		
+		var arr=getArr();
+		// var a=parseInt(arr[0].value);
+		// var b=parseInt(arr[1].value);
+		// var c=parseInt(arr[2].value);
+		 var d=parseInt(arr[3].value);
+		 var result=IRR(d,-d);
+		 result="IRR="+(result.toFixed(2))+"%";
+		document.getElementById("show").innerHTML=(result);		
+
+	}
+	
+	function getArr(){
+		var arr = document.getElementsByTagName("input");
+		return arr;
+	}
+
+	function IRR(x,y){
+		
+	var arr=getArr();
+	var a=parseInt(arr[0].value);
+	var b=parseInt(arr[1].value);
+	var c=parseInt(arr[2].value);
+	var d=parseInt(arr[3].value);	
+	var z=((x+y)/2);
+				
+	if	((Math.abs(x-y)<0.000001))
+		
+		return(z*100)
+
+	else if (cIRR(x,c,a,d,b)*cIRR(z,c,a,d,b)>0)
+		return IRR(z,y);
+
+	else return IRR(x,z);
+}
+
+function cIRR(a,b,c,d,e){
+var sum=0;
+		for(i=b-c+1;i<=b;i++){
+		sum=sum+(Math.pow((1+a),i));		
+		}
+		return sum-d/e;
+
+}
+	
+	// function show(a,b){
+	// 	document.getElementById("show").innerHTML=IRR(z,-z);
+	// 	//document.getElementById("show").innerHTML=result;
+	// }
+		
+
+
+</script>
+</html>
