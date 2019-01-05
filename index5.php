@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-
-<title></title>
-
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-</head>
-<body>
-
+<script type="text/javascript">	
+  $(document).ready(function(){
+  $("#myTable").tablesorter({
+    theme: "blue",
+    widgets: ['zebra']
+    });
+})
+</script>
 <?php
 //include '../config.php';
 include 'config.php';
@@ -63,13 +59,29 @@ AND month BETWEEN $staM and $endM AND year='2018' GROUP BY type5 ORDER BY ratio 
 
 $result = mysqli_query($link, $sqlstr) or die(ERROR_QUERY);
 $data='';
-$data='<h2></h2>
-	<table class="table table-bordered table-hover">
-		<tr align="center">
-			<th>險種</th>
-			<th>保費</th>
-			<th>占比</th>
-		</tr>';
+$data='
+<!-- Area Chart Example-->
+
+<div id="piechart">
+</div>
+</div>
+
+<div class="card mb-3">
+	<div class="card-header">
+		<i class="fa fa-table"></i>
+		  table
+	</div>
+	<div class="card-body">
+    <div class="table-responsive">
+	<table class="table table-bordered tablesorter" id="myTable" "width="100%" cellspacing="0">
+		<thead>
+	        <tr>
+	          <th>險種</th>
+	          <th>保費</th>
+	          <th>佔比</th>
+	        </tr>
+	      </thead>
+';
 while($row=mysqli_fetch_array($result))
 {
 	$type = $row['type'];
@@ -86,9 +98,11 @@ while($row=mysqli_fetch_array($result))
       </tr>
      
 HEREDOC;
-
 }
 $data.='</table>';
+
+
+
 
 $result = mysqli_query($link, $sqlstr) or die(ERROR_QUERY);
 $data2='';
@@ -98,8 +112,6 @@ while($row=mysqli_fetch_array($result))
 	
 
 }
-
-
 
 db_close($link);
 echo $data;
@@ -125,8 +137,4 @@ echo "<script type='text/javascript'>
 	}
 </script>";
 ?>
-<div id="piechart"></div>
 
-</body>
-
-</html>
