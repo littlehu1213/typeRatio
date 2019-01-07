@@ -5,12 +5,6 @@
 <style>
 
 
-
-
-
-
-
-
 </style>
 
 <meta charset="utf-8">
@@ -23,15 +17,11 @@
 <!-- Custom styles for this template-->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <link href="css/sb-admin.css" rel="stylesheet">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>   
-
-
+<link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script> 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.30.5/css/theme.blue.min.css"></link>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.30.5/js/jquery.tablesorter.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script>
 
 window.onload=function(){
@@ -63,18 +53,28 @@ window.onload=function(){
 
 
   document.getElementById('endM').innerHTML=m2;
-  // $(document).ready( function() {
-   
- //      var prog = 'index5.php?starM=1&endM=1';
- //      $('#show').load( prog );
- //      //$('#show2').load( prog );
-
-//} 
 
   $(document).ready(function(){
     
       $.ajax({
-        url:"index5.php",
+        url:"piechart.php",
+        dataType:"html",
+        data:
+        {
+          starM:1,
+          endM:1
+        },
+        success:function(data){
+          $("#show").html(data);
+        },
+        error:function(){
+          alert("error");
+        }
+
+      });
+
+      $.ajax({
+        url:"table.php",
         dataType:"html",
         data:
         {
@@ -83,7 +83,7 @@ window.onload=function(){
         },
         success:function(data){
           //alert(data);
-          $("#show").html(data);
+          $("#show2").html(data);
         },
         error:function(){
           alert("error");
@@ -104,12 +104,10 @@ window.onload=function(){
 
 
 
-
-
 $(document).ready(function(){
   $("#change").change(function() {
     $.ajax({
-      url:"index5.php",
+      url:"piechart.php",
       dataType:"html",
       data:
       {
@@ -124,7 +122,24 @@ $(document).ready(function(){
       }
 
     });
+    $.ajax({
+      url:"table.php",
+      dataType:"html",
+      data:
+      {
+        starM:$('#starM').val(),
+        endM:$('#endM').val()
+      },
+      success:function(data){
+        $("#show2").html(data);
+      },
+      error:function(){
+        alert("error");
+      }
+
+    });
   });
+
     
 });
 
@@ -176,21 +191,33 @@ $(document).ready(function(){
 
             </div>
           </div>
-          <!-- Area Chart Example-->
+          <!--Chart-->
           <div class="card mb-3">
             <div class="card-header">
               <i class="fa fa-pie-chart"></i>
               Pie Chart
             </div>
             <div class="card-body">
-            <div id="show" width="100%" height="30">
-
-
-
+              <div id="show" width="100%" height="30">
+              
+              </div>
+            </div>
+          </div> 
+          <!--TABLE-->
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fa fa-pie-table"></i>
+              Data Table
+            </div>
+            <div class="card-body">
           
-          </div>
-          </div>
-          </div>  
+
+                <div id="show2" width="100%" height="30">
+
+                </div>
+                              
+            </div>
+          </div>   
         <!-- Sticky Footer -->
         <footer>
           <div class="container my-auto">
